@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Weight Prediction System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e0ecff, #f5f7fb);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 430px;
+            background: #ffffff;
+            padding: 40px 35px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .icon {
+            width: 65px;
+            height: 65px;
+            margin: 0 auto 20px;
+            background: #eff6ff;
+            color: #2563eb;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+
+        h1 {
+            color: #1e3a8a;
+            font-size: 27px;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 22px;
+        }
+
+        label {
+            display: block;
+            color: #334155;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .unit {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .result {
+            margin-top: 28px;
+            padding: 22px;
+            background: #eff6ff;
+            border: 1px solid #dbeafe;
+            border-radius: 10px;
+        }
+
+        .result h3 {
+            color: #334155;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        .result h2 {
+            color: #2563eb;
+            font-size: 34px;
+        }
+
+        .result p {
+            color: #64748b;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            color: #94a3b8;
+            font-size: 11px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 22px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="icon">
+            ⚖
+        </div>
+
+        <h1>Weight Prediction</h1>
+
+        <p class="description">
+            Enter your height below to predict your weight
+            using a Simple Linear Regression model.
+        </p>
+
+        <form action="/predict" method="POST">
+
+            <div class="input-group">
+
+                <label for="height">
+                    Enter Your Height
+                </label>
+
+                <input
+                    type="number"
+                    id="height"
+                    name="height"
+                    placeholder="Example: 170"
+                    step="any"
+                    min="0"
+                    required
+                >
+
+                <div class="unit">
+                    Measurement unit: Centimeters (cm)
+                </div>
+
+            </div>
+
+            <button type="submit">
+                Predict Weight
+            </button>
+
+        </form>
+
+        {% if result is defined and result is not none %}
+
+        <div class="result">
+
+            <h3>Predicted Weight</h3>
+
+            <h2>{{ result }} kg</h2>
+
+            <p>Prediction generated using Machine Learning</p>
+
+        </div>
+
+        {% endif %}
+
+        <div class="footer">
+            Powered by Python, Flask & Scikit-learn
+        </div>
+
+    </div>
+
+</body>
+
+</html>
